@@ -1,0 +1,133 @@
+# 🔐 Simulando Ataques de Brute Force com Medusa e Kali Linux
+
+Projeto prático de **auditoria de segurança e testes de autenticação** em ambiente controlado, com o objetivo de compreender o funcionamento de ataques de força bruta, identificar vulnerabilidades em serviços de rede e estudar medidas de proteção.
+
+> ⚠️ Todos os testes foram realizados exclusivamente em laboratório, utilizando máquinas virtuais próprias e intencionalmente vulneráveis. Nenhuma atividade foi direcionada a sistemas reais sem autorização.
+
+## 🎯 1. Objetivos
+
+- Compreender o funcionamento de ataques de força bruta.
+- Realizar testes controlados em serviços FTP, Web e SMB.
+- Utilizar Kali Linux e ferramentas de auditoria de segurança.
+- Identificar problemas relacionados a credenciais fracas.
+- Documentar resultados e analisar possíveis medidas de mitigação.
+
+## 🖥️ 2. Ambiente de Laboratório
+
+| Componente | Descrição |
+|---|---|
+| Virtualização | VirtualBox |
+| Rede | Host-only |
+| Máquina atacante | Kali Linux |
+| Máquina alvo | Metasploitable 2 / DVWA |
+| Endereço IP do alvo | `192.168.56.102` |
+| Ferramenta principal | Medusa |
+
+## 🧪 3. Cenários de Teste
+
+### 3.1. Ataque de força bruta em FTP
+
+**Alvo:** Metasploitable 2  
+**Ferramenta:** Medusa
+
+Foi realizado um teste controlado de autenticação no serviço FTP, com o objetivo de demonstrar como credenciais fracas podem ser identificadas por meio de tentativas automatizadas.
+
+**Resultado:** Teste documentado por meio das evidências disponíveis na pasta `images`.
+
+**Evidência:**
+
+![Execução do teste FTP com Medusa](images/medusa.png)
+
+### 3.2. Teste de autenticação em formulário Web
+
+**Alvo:** DVWA
+
+Foi preparado um cenário de teste para analisar a autenticação de um formulário Web e compreender como tentativas automatizadas podem ser utilizadas contra mecanismos de login.
+
+**Resultado:** O teste não foi concluído devido a um erro de sintaxe no comando utilizado com Hydra. O problema foi identificado e documentado como parte do processo de aprendizado.
+
+**Evidência:**
+
+![Teste de autenticação Web no DVWA](images/dvwa.png)
+
+### 3.3. Enumeração e autenticação SMB
+
+**Alvo:** Metasploitable 2  
+**Usuário utilizado:** `msfadmin`
+
+Foi realizado um teste de autenticação e enumeração de compartilhamentos SMB.
+
+Durante o procedimento:
+- A primeira tentativa retornou `NT_STATUS_LOGON_FAILURE`.
+- Uma segunda tentativa autenticou com sucesso.
+- Foram identificados os compartilhamentos disponíveis no servidor.
+
+**Compartilhamentos enumerados:**
+- `print$`
+- `tmp`
+- `opt`
+- `IPC$`
+- `ADMIN$`
+- `msfadmin` (Home Directories)
+
+**Servidor identificado:** `METASPLOITABLE`
+
+**Resultado:** Autenticação validada e compartilhamentos SMB enumerados com sucesso.
+
+**Evidência:**
+
+![Enumeração SMB](images/smb.png)
+
+## 📸 4. Evidências do Laboratório
+
+Os registros visuais dos procedimentos estão disponíveis no diretório `images/`:
+
+| Arquivo | Descrição |
+|---|---|
+| `medusa.png` | Execução do teste FTP |
+| `dvwa.png` | Tentativa de teste Web |
+| `smb.png` | Autenticação e enumeração SMB |
+| `kali-linux.png` | Ambiente Kali Linux |
+
+## 📚 5. Aprendizados
+
+Durante o desenvolvimento do projeto, foi possível compreender:
+
+- Como ataques de força bruta exploram senhas fracas.
+- A importância de credenciais fortes e exclusivas.
+- O funcionamento básico dos protocolos FTP e SMB.
+- Como ferramentas de auditoria automatizam tentativas de autenticação.
+- A importância de interpretar mensagens de erro durante testes de segurança.
+- Como documentar evidências e resultados de uma auditoria.
+- A necessidade de combinar segurança ofensiva com estratégias de defesa.
+
+## 🛡️ 6. Medidas de Mitigação
+
+Com base nos cenários estudados, algumas medidas recomendadas são:
+
+- Utilizar senhas longas, fortes e exclusivas.
+- Implementar autenticação multifator (MFA/2FA).
+- Aplicar bloqueios temporários após várias tentativas de autenticação malsucedidas.
+- Utilizar CAPTCHA em formulários Web quando apropriado.
+- Monitorar e registrar tentativas suspeitas de login.
+- Desabilitar serviços desnecessários, especialmente FTP sem criptografia.
+- Utilizar ferramentas como Fail2Ban para identificar e bloquear tentativas repetidas de autenticação.
+- Restringir o acesso a compartilhamentos SMB e aplicar permissões adequadas.
+
+## 📝 7. Conclusão
+
+O projeto proporcionou uma experiência prática com conceitos fundamentais de segurança da informação, permitindo observar como credenciais fracas e configurações inadequadas podem representar riscos para serviços de rede.
+
+Além da execução dos testes, o laboratório reforçou a importância da análise de resultados, da documentação técnica e da implementação de medidas preventivas.
+
+A atividade contribuiu para o desenvolvimento de conhecimentos iniciais em **Cybersecurity, Linux, redes de computadores, auditoria de segurança e testes de autenticação**.
+
+## 👩‍💻 Autora
+
+**Vitória**
+
+GitHub: [@vitoriacanjos123-glitch](https://github.com/vitoriacanjos123-glitch)
+
+---
+
+*Projeto educacional desenvolvido em ambiente virtual controlado, com finalidade de aprendizado em segurança da informação.*
